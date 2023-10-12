@@ -1,35 +1,26 @@
+import java.util.*;
 class Solution {
     public String reverseVowels(String s) {
-        StringBuilder result = new StringBuilder(s);
-        int left = 0, right = s.length() - 1;
-
-        while (left < right) {
-            char leftChar = s.charAt(left);
-            char rightChar = s.charAt(right);
-
-            if (isVowel(leftChar) && isVowel(rightChar)) {
-                // 두 문자가 모음이면 위치를 교체
-                result.setCharAt(left, rightChar);
-                result.setCharAt(right, leftChar);
-                left++;
-                right--;
-            } else if (isVowel(leftChar)) {
-                // 오른쪽 문자가 모음이 아닌 경우
-                right--;
-            } else if (isVowel(rightChar)) {
-                // 왼쪽 문자가 모음이 아닌 경우
-                left++;
-            } else {
-                // 양쪽 모두 모음이 아닌 경우
-                left++;
-                right--;
+        char[] characters = s.toCharArray();
+        List<Character> vowels = new ArrayList<>();
+        StringBuilder answer = new StringBuilder();
+        for(char c: characters){
+            if(isVowel(c)){
+                vowels.add(c);
             }
         }
-
-        return result.toString();
+        int i = vowels.size()-1;
+        for(char c: characters){
+            if(isVowel(c)){
+                answer.append(vowels.get(i));
+                i--;
+            }else{
+                answer.append(c);
+            }
+        }
+        return answer.toString();
     }
-
-    private boolean isVowel(char c) {
+    public static boolean isVowel(char c){
         return "aeiouAEIOU".indexOf(c) != -1;
     }
 }
