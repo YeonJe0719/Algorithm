@@ -3,25 +3,15 @@ import java.util.stream.Collectors;
 
 class Solution {
     public List<List<Integer>> findDifference(int[] nums1, int[] nums2) {
-        Set<Integer> ans1 = new HashSet<>();
-        Set<Integer> ans2 = new HashSet<>();
-        List<Integer> tmp1 = Arrays.stream(nums1).boxed().collect(Collectors.toList());
-        List<Integer> tmp2 = Arrays.stream(nums2).boxed().collect(Collectors.toList());
+        Set<Integer> set1 = Arrays.stream(nums1).boxed().collect(Collectors.toSet());
+        Set<Integer> set2 = Arrays.stream(nums2).boxed().collect(Collectors.toSet());
 
-        for (int i = 0; i < nums1.length; i++) {
-            if (!tmp2.contains(nums1[i]))
-                ans1.add(nums1[i]);
-        }
+        Set<Integer> ans1 = new HashSet<>(set1);
+        Set<Integer> ans2 = new HashSet<>(set2);
 
-        for (int j = 0; j < nums2.length; j++) {
-            if (!tmp1.contains(nums2[j]))
-                ans2.add(nums2[j]);
-        }
+        ans1.removeAll(set2);
+        ans2.removeAll(set1);
 
-        List<List<Integer>> answer = new ArrayList<>();
-        answer.add(new ArrayList<>(ans1));
-        answer.add(new ArrayList<>(ans2));
-
-        return answer;
+        return Arrays.asList(new ArrayList<>(ans1), new ArrayList<>(ans2));
     }
 }
