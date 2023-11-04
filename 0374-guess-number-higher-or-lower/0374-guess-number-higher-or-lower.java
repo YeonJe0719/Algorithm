@@ -11,11 +11,12 @@ public class Solution extends GuessGame {
      public int guessNumber(int n) {
         int left = 1;
         int right = n;
+        int result = 0;
         
         while (left <= right) {
             int mid = left + (right - left) / 2; // 중간 값 계산
             
-            int result = guess(mid);
+            result = guess(mid);
             
             if (result == 0) {
                 return mid; // 숨겨진 숫자를 찾았을 때
@@ -27,6 +28,7 @@ public class Solution extends GuessGame {
         }
         
         // 숨겨진 숫자를 찾지 못한 경우
-        return -1; 
+        // return -1; 
+        return result;
     }
 }
