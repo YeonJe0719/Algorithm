@@ -15,10 +15,10 @@ class Solution {
     }
 
     private void dfs(int[][] isConnected, int city, boolean[] visited) {
-        visited[city] = true;
+        
         for (int neighbor = 0; neighbor < isConnected.length; neighbor++) {
             if (isConnected[city][neighbor] == 1 && !visited[neighbor]) {
-                
+                visited[city] = true;
                 dfs(isConnected, neighbor, visited);
             }
         }
