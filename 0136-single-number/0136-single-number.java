@@ -1,9 +1,18 @@
+import java.util.HashSet;
+
 class Solution {
     public int singleNumber(int[] nums) {
-        int result = 0;
+        HashSet<Integer> set = new HashSet<>();
+
         for (int num : nums) {
-            result ^= num;
+            if (set.contains(num)) {
+                set.remove(num);
+            } else {
+                set.add(num);
+            }
         }
-        return result;
+
+        // The remaining element in the HashSet is the single non-duplicate number
+        return set.iterator().next();
     }
 }
