@@ -8,8 +8,7 @@ class Solution {
             int currentWidth = right - left;
             int currentHeight = Math.min(height[left], height[right]);
 
-            int currentWater = currentWidth * currentHeight;
-            maxWater = Math.max(maxWater, currentWater);
+            maxWater = Math.max(maxWater, currentWidth * currentHeight);
 
             // Move pointers based on the smaller height to potentially find a larger height.
             if (height[left] < height[right]) {
