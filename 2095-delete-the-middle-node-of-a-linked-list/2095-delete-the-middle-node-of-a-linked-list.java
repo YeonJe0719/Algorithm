@@ -14,24 +14,25 @@ class Solution {
             return null; // No middle node to delete
         }
 
-        ListNode slow = head;
-        ListNode fast = head;
-        ListNode prev = null;
+        int length = 0;
+        ListNode current = head;
 
-        // Move slow and fast pointers to find the middle node
-        while (fast != null && fast.next != null) {
-            prev = slow;
-            slow = slow.next;
-            fast = fast.next.next;
+        // Calculate the length of the list
+        while (current != null) {
+            length++;
+            current = current.next;
+        }
+
+        int middle = length / 2;
+        current = head;
+
+        // Traverse to the middle node again
+        for (int i = 0; i < middle - 1; i++) {
+            current = current.next;
         }
 
         // Delete the middle node
-        if (prev != null) {
-            prev.next = slow.next;
-        } else {
-            // If the head itself is the middle node
-            head = head.next;
-        }
+        current.next = current.next.next;
 
         return head;
         
